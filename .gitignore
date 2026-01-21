@@ -4,9 +4,10 @@ __pycache__/
 .venv/
 venv/
 
-# Generated outputs
+# Generated outputs (except examples)
 *.mp4
 *.gif
+!examples/*.gif
 
 # Environment / secrets
 .env

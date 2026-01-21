@@ -2,6 +2,10 @@
 
 Claude Code skill to generate animated videos from static profile pictures using AI.
 
+<p align="center">
+  <img src="examples/velinus_nod_wink.gif" alt="Example: nod + wink animation" width="300">
+</p>
+
 ## Installation
 
 ```bash
