@@ -16,13 +16,20 @@ PFP Animate generates animated videos from static images using AI models on Repl
 </overview>
 
 <check_setup>
-**Before any animation, verify setup:**
+**CRITICAL: Before ANY animation, check for token:**
 ```bash
-# Check if token is configured
 echo $REPLICATE_API_TOKEN | head -c 10
 ```
 
-If empty or missing, route to `workflows/setup.md`.
+**If empty or missing, ASK the user directly:**
+> "I need your Replicate API token to generate videos. Please provide it, or get one from https://replicate.com/account/api-tokens"
+
+**Once user provides token, use it inline:**
+```bash
+REPLICATE_API_TOKEN='user_provided_token' python scripts/animate_veo.py ...
+```
+
+**Do NOT run animation scripts without first verifying the token is available.**
 </check_setup>
 
 <intake>
