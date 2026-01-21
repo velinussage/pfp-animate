@@ -8,6 +8,7 @@ venv/
 *.mp4
 *.gif
 !examples/*.gif
+!examples/*.mp4
 
 # Environment / secrets
 .env

@@ -3,7 +3,10 @@
 Claude Code skill to generate animated videos from static profile pictures using AI.
 
 <p align="center">
-  <img src="examples/velinus_nod_wink.gif" alt="Example: nod + wink animation" width="300">
+  <img src="examples/velinus_nod_wink.gif" alt="Keyframe mode: nod + wink" width="300">
+</p>
+<p align="center">
+  <em>Keyframe mode (GIF) &nbsp;|&nbsp; <a href="examples/velinus_video.mp4">Video mode example (MP4)</a></em>
 </p>
 
 ## Installation
