@@ -1,69 +1,118 @@
-# Avatar 3D
+# PFP Animate
 
-Generate interactive 3D avatar views from a single photo using AI. Move your mouse to rotate the head in real-time.
+Generate animated videos from static profile pictures (PFPs) using AI. Transform any image into a short, expressive video with customizable motions.
 
-## Inspiration
+## Quick Start
 
-Inspired by [Wes Bos's Eye Ballz](https://github.com/wesbos/eye-ballz) project, which creates interactive eye-tracking avatars. This project takes it further by enabling easy upload and running.
-## How It Works
+1. **Setup Replicate** (one-time)
+   - Create account at https://replicate.com
+   - Get API token from https://replicate.com/account/api-tokens
+   - Add credits at https://replicate.com/account/billing
+   - Set environment variable:
+     ```bash
+     export REPLICATE_API_TOKEN="r8_your_token_here"
+     ```
 
-1. Upload a photo with a face
-2. The app first preprocesses your photo using [google/nano-banana-pro](https://replicate.com/google/nano-banana-pro) to create a stylized 3D Pixar-style portrait
-3. Then it generates a grid of images at different head angles using [fofr/expression-editor](https://replicate.com/fofr/expression-editor)
-4. As you move your mouse over the viewer, it swaps between images to create a 3D rotation effect
+2. **Animate an image**
+   ```bash
+   python scripts/animate_pfp.py image.png output.mp4 --motion nod
+   ```
 
-## Getting Started
+## Two Animation Modes
 
-### Prerequisites
-
-- Node.js 18+
-- [Replicate API token](https://replicate.com/account/api-tokens)
-
-### Installation
+### Video Mode (MP4)
+AI-generated cinematic motion using Kling v2.5 Turbo Pro.
 
 ```bash
-# Clone the repo
-git clone https://github.com/yourusername/avatar-3d.git
-cd avatar-3d
-
-# Install dependencies
-pnpm install
-
-# Copy environment variables
-cp .env.example .env.local
-
-# Add your Replicate API token to .env.local
-# REPLICATE_API_TOKEN=r8_xxxxx
-
-# Run the dev server
-pnpm dev
+python scripts/animate_pfp.py image.png output.mp4 --motion wave
+python scripts/animate_pfp.py image.png output.mp4 --prompt "slowly winking"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+**Options:** `--duration 5|10`, `--aspect 1:1|16:9|9:16`, `--guidance 0.0-1.0`
 
-## Configuration
+### Keyframe Mode (GIF)
+Precise facial expression control using expression-editor.
 
-Adjust the grid size and rotation range in the UI:
+```bash
+python scripts/animate_keyframe.py image.png output.gif --motion nod_wink
+```
 
-- **X Steps / Y Steps**: Number of images in each direction (5x5 = 25 images)
-- **Yaw Range**: Horizontal rotation range in degrees
-- **Pitch Range**: Vertical rotation range in degrees
+**Presets:** `nod`, `wink`, `shake_no`, `nod_wink`, `look_around`, `surprise`, `laugh`
 
-Higher step counts = smoother rotation but more API calls and longer generation time.
+## Motion Presets
 
-## Cost
+| Preset | Description | Mode |
+|--------|-------------|------|
+| `nod` | Subtle head nod | Both |
+| `wave` | Friendly wave | Video |
+| `wink` | Playful wink | Both |
+| `laugh` | Laughing expression | Both |
+| `think` | Thoughtful head tilt | Video |
+| `surprise` | Surprised reaction | Both |
+| `shake_no` | Shaking head no | Keyframe |
+| `nod_wink` | Nod followed by wink | Keyframe |
 
-Each image costs ~$0.01 on Replicate. A 5x5 grid costs ~$0.25, a 7x7 grid costs ~$0.49.
+## Pricing
 
-## Tech Stack
+| Mode | Cost | Output |
+|------|------|--------|
+| Video (5s) | ~$0.35 | MP4 |
+| Video (10s) | ~$0.70 | MP4 |
+| Keyframe (10 frames) | ~$0.02 | GIF |
 
-- [Next.js](https://nextjs.org/) - React framework
-- [Replicate](https://replicate.com/) - AI model hosting
-- [google/nano-banana-pro](https://replicate.com/google/nano-banana-pro) - 3D portrait stylization
-- [fofr/expression-editor](https://replicate.com/fofr/expression-editor) - Head rotation model
-- [Tailwind CSS](https://tailwindcss.com/) - Styling
-- [shadcn/ui](https://ui.shadcn.com/) - UI components
+## Skill Structure
+
+```
+pfp-animate/
+├── SKILL.md                    # Claude Code skill (intake menu + routing)
+├── scripts/
+│   ├── animate_pfp.py          # Video mode (Kling v2.5)
+│   ├── animate_keyframe.py     # Keyframe mode (expression-editor)
+│   └── presets.json            # Motion preset definitions
+├── workflows/
+│   ├── setup.md                # Replicate account setup guide
+│   ├── animate.md              # Video animation workflow
+│   └── keyframe.md             # Keyframe animation workflow
+└── references/
+    ├── presets.md              # Full preset documentation
+    ├── pricing.md              # Cost reference
+    └── troubleshooting.md      # Common issues and fixes
+```
+
+## As a Claude Code Skill
+
+Install and use with Claude Code:
+
+```bash
+# Install skill
+scroll skill add /path/to/pfp-animate
+
+# Then just ask Claude:
+"Animate my profile picture with a wink"
+"Create a nodding video from ~/Downloads/avatar.png"
+```
+
+## Requirements
+
+- Python 3.9+
+- Replicate API token (with billing set up)
+- PIL/Pillow (for keyframe mode)
+
+```bash
+# macOS
+brew install pillow
+
+# Or create venv
+python3 -m venv .venv && source .venv/bin/activate
+pip install pillow
+```
 
 ## License
 
 MIT
+
+## Credits
+
+- [Replicate](https://replicate.com/) - AI model hosting
+- [Kling v2.5 Turbo Pro](https://replicate.com/kwaivgi/kling-v2.5-turbo-pro) - Video generation
+- [expression-editor](https://replicate.com/fofr/expression-editor) - Facial expression control

@@ -1,0 +1,34 @@
+{
+  "nod": {
+    "prompt": "The subject gently nods their head in acknowledgment, subtle and natural movement, maintaining eye contact",
+    "negative": "distortion, blur, unnatural movement, glitches"
+  },
+  "wave": {
+    "prompt": "The subject waves hello with a friendly gesture, natural arm and hand movement, warm expression",
+    "negative": "distortion, blur, awkward arm position, frozen face"
+  },
+  "laugh": {
+    "prompt": "The subject laughs naturally, eyes crinkling with joy, shoulders moving slightly, genuine amusement",
+    "negative": "distortion, unnatural expression, frozen features, creepy smile"
+  },
+  "think": {
+    "prompt": "The subject tilts their head thoughtfully to one side, considering something, subtle chin movement",
+    "negative": "distortion, exaggerated movement, unnatural pose"
+  },
+  "surprise": {
+    "prompt": "The subject reacts with mild surprise, eyebrows raising, eyes widening slightly, mouth opening a bit",
+    "negative": "distortion, extreme expression, horror face, unnatural"
+  },
+  "idle": {
+    "prompt": "The subject breathes naturally with very subtle movement, slight head sway, almost still but alive",
+    "negative": "frozen, statue-like, completely still, jerky movement"
+  },
+  "talking": {
+    "prompt": "The subject is speaking, natural lip movement, subtle facial expressions while talking",
+    "negative": "distortion, unnatural mouth, frozen expression, robotic"
+  },
+  "wink": {
+    "prompt": "The subject gives a playful wink with one eye, slight smile, charming expression",
+    "negative": "distortion, both eyes closing, creepy, unnatural"
+  }
+}

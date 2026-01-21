@@ -30,10 +30,29 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
+# env files (NEVER commit API tokens!)
 .env
 .env.local
 .env.*.local
+.envrc
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.venv/
+*.egg-info/
+
+# Generated videos
+examples/sample_output/*.mp4
+*.mp4
+
+# Secrets
+*.pem
+*.key
+secrets/
 
 # claude
 .claude/
